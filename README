@@ -1,0 +1,68 @@
+= Macro Development Toolkit - supporting development of custom macros for Mingle
+
+https://rubygems.org/gems/mingle-macro-development-toolkit
+
+This toolkit provides support for developing, testing and deploying custom Mingle macros.
+
+Use the built in generator to create a skeleton of a plugin which you can then deploy to an instance of Mingle running
+version 2.2 or later of the software.
+
+This allows you to take advantage of free charting utilities such as the Google Charts API, to create
+new visualizations, specific to your project or organization.
+
+== FEATURES:
+
+* A command line tool to generate the skeleton of a custom Mingle macro
+* A unit test helper that uses locally available YAML fixture files to facilitate unit testing of the macros
+* An integration test helper that can
+  * obtain data from a remote instance of Mingle
+  * test MQL execution against a remote instance of Mingle
+* Rake task to deploy the custom macro as a plugin to a locally deployed Mingle instance
+
+== INSTALL:
+
+The preferred method of installing the Macro Development Toolkit is through its GEM file. You'll need to have
+RubyGems[http://www.rubygems.org/] installed for that, though. If you have it,
+then use:
+
+  % [sudo] gem install mingle-macro-development-toolkit
+
+== GETTING STARTED:
+
+To get started with this gem after you install it, use the new_mingle_macro script to generate a skeleton for your
+macro, along with test helpers. Say you wanted to create a new macro called "risk_meter" start out by creating
+the macro skeleton as follows
+
+  % new_mingle_macro risk_meter
+
+The skeleton project will also contain a file, called "getting_started.txt" that will walk you through the steps
+of fleshing out your macro.
+
+== SUPPORT:
+
+For any issues/clarifications/comments with installation or using this gem, contact us at the Mingle forums[http://community.thoughtworks.com/pages/home]. You can also get in touch with the ThoughtWorks Studios support
+team over email at support@thoughtworks.com
+
+== LICENSE:
+
+The MIT License
+
+Copyright (c) 2010 ThoughtWorks, Inc.  All rights reserved.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.

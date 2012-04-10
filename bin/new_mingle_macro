@@ -1,0 +1,39 @@
+#!/usr/bin/env ruby -rubygems -w
+
+require "fileutils"
+require 'thread'
+require 'active_support'
+require "erb"
+
+USAGE = <<-USAGE
+Usage: new_mingle_macro <macro_name>
+
+macro_name      : The name of your new macro. Should be alphabetic, possibly 
+                  including underscores(_).
+USAGE
+
+macro_name = ARGV[0]
+raise "Macro name is required!\n" + USAGE if macro_name.blank?
+raise "Invalid macro name!\n" + USAGE if macro_name !~ /^[a-z]([a-z0-9_]+)?/i
+
+macro_class_name = macro_name.downcase.camelcase
+
+destination = File.expand_path(macro_name)
+raise "#{destination} already exists!" if File.exists? destination
+
+FileUtils.mkdir destination
+
+Dir.chdir(File.join(File.dirname(__FILE__), "..", "templates")) do
+  Dir.glob("**/*").each do |f|
+    next if File.directory? f
+    output = File.join(destination, f)
+    FileUtils.mkdir_p(File.dirname(output))
+    File.open(output, 'w').write(ERB.new(File.read(f), nil, '-').result(binding))
+  end
+end
+
+Dir.chdir(destination) do
+  FileUtils.mv("lib/macro.rb", File.join("lib", "#{macro_name}.rb"))
+  FileUtils.mv("test/unit/unit_test.rb", File.join("test", "unit", "#{macro_name}_test.rb"))
+  FileUtils.mv("test/integration/integration_test.rb", File.join("test", "integration", "#{macro_name}_integration_test.rb"))
+end
