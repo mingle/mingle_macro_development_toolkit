@@ -1,0 +1,37 @@
+== 1.3.4 April 2012
+
+  * Minor bug fix
+  * Code refactoring
+
+== 1.3.3 January 2011
+
+  * Minor bug fix
+
+== 1.3.2 August 2010
+
+  * Minor bug fix
+
+== 1.3.1 March 2010
+
+  * 1 bug fix
+
+== 1.3 September, 2009
+
+  * Multiple project support
+  * The execute_mql call is now versioned to support both old and new formats for results
+  
+== 1.2 April 16, 2009
+  
+  * Mingle 2.3 integration
+  * Ability to emit Javascript from a macro 
+  * Fixed RDoc documentation 
+
+== 1.1 April 8, 2009
+
+  * 1 bug fix
+  * Fix project variable value to return the display value. In response to post http://community.thoughtworks.com/posts/462f0f399b
+  * Added documentation
+
+== 1.0 August 1, 2008
+
+  * Initial release

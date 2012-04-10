@@ -4,8 +4,8 @@ require File.join(File.dirname(__FILE__), 'integration_test_helper')
 
 class RestLoaderTest < Test::Unit::TestCase
   
-  TEST_PROJECT = 'http://bjanakir:pass1.@localhost:8080/api/v2/lightweight_projects/macro_toolkit_test.xml'
-  TEST_PROJECT_V1 = "http://bjanakir:pass1.@localhost:8080/api/v1/lightweight_projects/macro_toolkit_test.xml"
+  TEST_PROJECT = 'http://admin:p@localhost:8080/api/v2/lightweight_projects/macro_toolkit_test.xml'
+  TEST_PROJECT_V1 = "http://admin:p@localhost:8080/api/v1/lightweight_projects/macro_toolkit_test.xml"
   
   def test_should_load_direct_project_attributes_from_correct_fixture
     assert_not_nil project(TEST_PROJECT)
