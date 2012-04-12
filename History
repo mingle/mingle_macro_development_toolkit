@@ -1,3 +1,9 @@
+== 2.0.0 April 2012
+
+ * 1.3.4 was meant to be a major version update, sorry for the inconvenience caused.
+ * This version will generate macros that work with the upcoming Mingle 12.1 release.
+ * To work with older Mingle versions, you can use 1.3.3 version.
+
 == 1.3.4 April 2012
 
   * Minor bug fix
