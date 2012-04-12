@@ -16,6 +16,6 @@ Gem::Specification.new do |spec|
   spec.test_files  = Dir['test/test_helper'] + Dir['test/unit/*.rb'] + Dir['test/data/fixtures/*']
   spec.add_runtime_dependency 'mingle_macro_models', '1.3.4'
   spec.add_runtime_dependency 'activesupport', '2.3.5'
-  spec.homepage    = 'https://rubygems.org/gems/mingle-macro-development-toolkit'
+  spec.homepage    = 'https://github.com/ThoughtWorksStudios/mingle_macro_development_toolkit'
   spec.executables << 'new_mingle_macro'
 end
