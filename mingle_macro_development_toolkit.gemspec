@@ -17,5 +17,6 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'mingle_macro_models', '1.3.4'
   spec.add_runtime_dependency 'activesupport', '2.3.5'
   spec.homepage    = 'https://github.com/ThoughtWorksStudios/mingle_macro_development_toolkit'
+  spec.post_install_message = "NOTE: This version will only work with Mingle 12.1. For older versions of Mingle, please use version 1.3.3"
   spec.executables << 'new_mingle_macro'
 end

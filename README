@@ -1,11 +1,13 @@
 = Macro Development Toolkit - supporting development of custom macros for Mingle
 
-https://rubygems.org/gems/mingle-macro-development-toolkit
+https://github.com/ThoughtWorksStudios/mingle_macro_development_toolkit
+
+NOTE: This new version will only work with upcoming Mingle 12.1 release and later. For older versions of Mingle, please use version 1.3.3
 
 This toolkit provides support for developing, testing and deploying custom Mingle macros.
 
 Use the built in generator to create a skeleton of a plugin which you can then deploy to an instance of Mingle running
-version 2.2 or later of the software.
+version 12.1 or later of the software.
 
 This allows you to take advantage of free charting utilities such as the Google Charts API, to create
 new visualizations, specific to your project or organization.
