@@ -1,24 +1,318 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!DOCTYPE html 
-     PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN"
-     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
-
-<!--
-
-    mingle-macros's mingle-macro-development-toolkit-1.3.3 Documentation
-
-  -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>mingle-macros's mingle-macro-development-toolkit-1.3.3 Documentation</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="stylesheets/screen.css" type="text/css" media="screen" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Getting started with the Mingle Macro Development Toolkit</title>
 </head>
-<frameset rows="20%, 80%">
-    <frameset cols="25%,35%,45%">
-        <frame src="fr_file_index.html"   title="Files" name="Files" />
-        <frame src="fr_class_index.html"  name="Classes" />
-        <frame src="fr_method_index.html" name="Methods" />
-    </frameset>
-    <frame src="files/lib/macro_development_toolkit/mingle/card_type_rb.html" name="docwin" />
-</frameset>
+<body>
+<div id="main">
+
+    <h1>Getting started with the Mingle Macro Development Toolkit</h1>
+    <div class="sidebar">
+      <div id="version" class="clickable" onclick='document.location = "https://github.com/ThoughtWorksStudios/mingle_macro_development_toolkit"; return false'>
+        <p>Get Version</p>
+        <a href="https://github.com/ThoughtWorksStudios/mingle_macro_development_toolkit" class="numbers">2.0.1</a>
+      </div>
+    </div>
+    <h2>A background on macros in Mingle</h2>
+<p>Macros are a special kind of markup in the Mingle wiki. A macro in Mingle is identified by the following markup syntax</p>
+<pre>
+ 
+  macro_name
+    parameter1: value1
+    parameter2: value2
+    ...
+
+</pre>
+<p>The markup has to be valid <span class="caps">YAML</span> syntax. Specifically, this means that the markup is sensitive to spacing and indentation. For more help around <span class="caps">YAML</span> and what constitutes valid <span class="caps">YAML</span> markup, you can refer to it <a href="http://yaml.org/spec/current.html">here</a>.</p>
+<p>Specific examples of this include the pre-written macros, such as the value, average &amp; table macros and the macros for all the charts.</p>
+<p>When Mingle encounters a macro while rendering the markup, it delegates handling of the macro to a custom class behind the scenes that is registered to handle it. e.g., if Mingle encountered the following markup,</p>
+<pre>
+
+  average
+    query: SELECT 'Pre-release Estimate' WHERE Release = (current release)
+
+</pre>
+<p>it would parse the content between the opening and closing double braces, and identify the following.</p>
+<pre>
+Macro Name: average
+Macro Parameters: {query =&gt; "SELECT 'Pre-release Estimate' WHERE Release = (current release)"}
+</pre>
+<p>It then scans a registry of known macros, for a class that is configured to handle a macro with name average. This is the AverageMacro class. While you can find this class under the vendor/plugins/average_macro directory of your installation of Mingle, it is reproduced here for your convenience.</p>
+<pre>
+  class Array
+    def average
+      sum.to_f / size.to_f
+    end
+  end
+
+  class AverageMacro
+
+    def initialize(parameters, project, current_user)
+      @parameters = parameters
+      @project = project
+      @current_user = current_user
+      raise "Parameter #{'query'.bold} is required" unless query
+    end
+
+    def execute
+      first_values = @project.execute_mql(query).collect { |record| record.values.first }
+      data = first_values.reject(&:blank?).collect(&:to_f) 
+      data.empty? ? 'no values found' : @project.format_number_with_project_precision(data.average).to_s
+    end
+
+    def can_be_cached?
+      @project.can_be_cached?(query)
+    end
+
+    def self.supports_project_group?
+      false
+    end
+
+    private
+
+    def query
+      @parameters['query']
+    end
+  end
+</pre>
+<p>All data that is required to execute the macro is injected into the macro through the constructor. The parameters that are interpreted from the markup are passed in as a hash.</p>
+<p>The second parameter is special and could be either a single project or multiple projects, based on the parameter name used in the macro. In versions 1.3 and above of the gem, a comma separated list of project identifiers when supplied as the value of a macro parameter called project-group will be interpretted as multiple projects. This functionality can be used to build macros that report across multiple projects. The project or projects that are passed in are a lightweight representation of the project in the Mingle model which is documented <a href="http://thoughtworksstudios.github.com/mingle_macro_development_toolkit/rdoc">here</a></p>
+<p>The execute method uses the <span class="caps">MQL</span> execution facility that the project class provides, to execute the <span class="caps">MQL</span> string that is passed into through the parameters hash. It then formats the results to be a number, and provides that result of the execute command.</p>
+<p>For more help on what constitutes valid <span class="caps">MQL</span>, you can refer to our help documentation over <a href="http://studios.thoughtworks.com/mingle-agile-project-management/current/help/mql_reference.html">here</a></p>
+<p>To see an example of how to use the gem to report across multiple projects, refer to the cross_project_rollup macro which ships with versions of Mingle 3.0 and higher.</p>
+<h2>Writing your own macro</h2>
+<p>To write your own macro, you can start with the generated skeleton for the macro. To generate your own macro skeleton, use the new_mingle_macro script that installed with your gem.</p>
+<pre>
+% new_mingle_macro your_new_macro
+</pre>
+<p>This should generate a folder structure as follows</p>
+<pre>
+your_new_macro
+      |
+      |----lib
+      |     |
+      |     your_new_macro.rb
+      |
+      |
+      |----test
+             |
+             |----fixtures
+             |      |
+             |    sample
+             |       |
+             |       projects.yml, card_types.yml...
+             |
+             |---- unit
+             |      |
+             |      your_new_macro_test.rb,...
+             |
+             |---- integration
+                    |
+                    your_new_macro_integration_test.rb, ...
+
+</pre>
+<p>The lib directory contains the actual macro, and the test folders give you the option to run the tests either against local <span class="caps">YAML</span> based fixtures, or using <span class="caps">REST</span> to test against a deployed mingle instance.</p>
+<p>When this macro is deployed to Mingle, all wiki markup of the form</p>
+<pre>
+
+  your_new_macro
+    parameter1: value1
+    parameter2: &lt;some_mql_statement&gt;
+    ...
+
+</pre>
+<p>will be parsed as <span class="caps">YAML</span> and handling will be delegated to an instance of your macro class, YourNewMacro. The parameters will be parsed into a Ruby hash, of the following structure:</p>
+<pre>
+{'parameter1' =&gt; 'value1', 'parameter2' =&gt; '&lt;some_mql_snippet&gt;'}
+</pre>
+<p>and will be passed into the constructor of the class, along with an instance of a Mingle::Project, that represents the project that this macro is being rendered on.</p>
+<p>As an example of what you can do with this information is the following macro, which uses the Google Charting <span class="caps">API</span> to render a Google-o-meter style chart to represent work completed in a fuel guage style meter.</p>
+<pre>
+class WorkGauge
+  
+  def initialize(parameters, project, current_user)
+    @parameters = parameters
+    @project = project
+    @current_user = current_user
+  end
+    
+  def execute
+    completed_work = @project.execute_mql(@parameters['completed_work']).first.values.sum
+    total_work = @project.execute_mql(@parameters['total_work']).first.values.sum
+    completion_percentage = (completed_work.to_f / total_work.to_f) * 100
+
+    %Q{ &lt;img src='http://chart.apis.google.com/chart?cht=gom&amp;chs=350&amp;chd=t:#{completion_percentage}&amp;chds=0,100' /&gt; }
+  end
+  
+end
+</pre>
+<p>The execute method can return any valid <span class="caps">HTML</span> or Javascript content. The ability to emit Javascript content, specifically, can only be used on Mingle version 2.3 and above.</p>
+<p>The following example demonstrates how to use the Javascript emission functionality to embed a Google Maps map.</p>
+<p>Note: For this example to work, you will have to supply your own Google Maps <span class="caps">API</span> key as a part of the script tag that loads the Google <span class="caps">API</span>.</p>
+<pre>
+  class GoogleMapsMacro
+
+    def initialize(parameters, project, current_user)
+      @src = parameters['src']
+      @width = parameters['width']
+      @height = parameters['height']
+    end
+
+    def execute
+      raise "Parameter src must be a recognized Google Maps URL." unless valid?
+
+      %{
+        &lt;iframe src="#{source_with_embedded_output}" width="#{@width}" height="#{@height}" /&rt;
+      }
+    end
+
+    def valid?
+      return false unless @src
+      begin
+        uri = URI.parse(@src)
+        return unless uri.host
+        return unless (uri.scheme == "http" ||uri.scheme == "https")
+        uri.host.start_with?('maps.google.com')
+      rescue URI::InvalidURIError
+        false
+      end
+    end
+
+    def can_be_cached?
+      true  # if appropriate, switch to true once you move your macro to production
+    end
+
+    private
+
+    def source_with_embedded_output
+      uri = URI.parse(@src)
+      query = uri.query || ""
+      query_params = Rack::Utils.parse_query(query)
+      uri.query = query_params.merge('output' => 'embed').to_query
+      uri.to_s
+    end
+
+  end
+</pre>
+<p>Long running or integration macros which run on server will result in long page render times. We recommend these sort of macros use Javascript (or <span class="caps">JSONP</span>) to offload work to the browser.</p>
+<p>You can find both simpler and more complex examples in the vendor/plugins/sample_macros directory.</p>
+<p>Tip: If you wish to use JQuery, you will have to add a call to JQuery.noConflict() to prevent conflicts with the Prototype library that ships with Mingle. You can refer to the JQuery documentation here (http://docs.jquery.com/Core/jQuery.noConflict) to see the correct order in which to load the libraries and other conditions to be followed in order to make this work properly. If you do not do this, you can still use JQuery without using the $ shorthand for the jQuery function.</p>
+<h2>Unit testing your macro</h2>
+<p>The macro development toolkit comes with a built in unit testing framework, that borrows the familiar idea of <span class="caps">YAML</span> based fixtures. The one small difference we have made to it is that each project that you are providing fixtures for gets its own subfolder within the fixtures directory. We hope that this makes it easier to identify relationships between the objects set up in the <span class="caps">YAML</span> files.</p>
+<p>If you are using the skeleton project set up by the new_mingle_macro script, the fixtures directory provides you with a sample project fixture. The data in that should give you a sense of the relationships between the various objects.</p>
+<p>The skeleton project also has a sample unit test set up for you, which uses the sample fixture data. Note the helper method project(&#8230;) which takes the name of a sample project to load information from. This method loads a web of objects from the directory named the same as the argument, in the fixtures folder.</p>
+<pre>
+class YourNewMacroTest &lt; Test::Unit::TestCase
+  
+  FIXTURE = 'sample'
+  
+  def test_macro_contents
+    macro = YourNewMacro.new(nil, project(FIXTURE), nil)
+    result = macro.execute
+    assert result
+  end
+
+end
+</pre>
+<p>Once loaded, you can test things like parameter checking and validations using this style of test. While you cannot execute <span class="caps">MQL</span> in this style of test, you can use your favorite mocking library to test how results get handled.</p>
+<p>You can see examples of unit tests in the average macro that is packaged with Mingle in the vendor/plugins/average_macro directory.</p>
+<h2>Integration testing your macro</h2>
+<table>
+	<tr>
+		<th colspan="2"><span class="caps">NOTE</span></th>
+	</tr>
+	<tr>
+		<td>In order to run the integration tests, you will need to turn on basic authentication for the Mingle server that you are going to be testing against.</td>
+	</tr>
+</table>
+<p>The integration tests look very similar to the unit tests, the primary difference being that they actually communicate with a deployed Mingle instance over <span class="caps">REST</span>. The helper methods populate a web of objects representing a project, that look and behave in a manner identical to how they will in production.</p>
+<p>The one significant difference about this style of tests is that you can actually execute <span class="caps">MQL</span> remotely on the Mingle instance instead of mocking out the <span class="caps">MQL</span> execution. This will give you a good idea of what results and errors you may expect to see in production, without having to deploy the macro every time.</p>
+<p>There are tradeoffs, of course. Some of these are as follows</p>
+<ul>
+	<li>Should you decide to add these tests to a Continuous Integration build, like Cruise, you will hit the production Mingle sever with every test run. Not hot.</li>
+	<li>Given that each test makes a call to a production server, there is no guarantee (unless you set it up in such a way) &#8211; that multiple calls to fetch the same resource will give the same result.</li>
+	<li>Also, while not slow, these tests are definitely much slower than the unit tests. So while it is certainly possible to write only integration tests, we would encourage a judicious mix of both styles.</li>
+</ul>
+<pre>
+class YourNewMacroIntegrationTest &lt; Test::Unit::TestCase
+  
+  PROJECT_RESOURCE = 'http://your.mingle.server:port/projects/project_identifier.xml'
+
+  def test_macro_contents
+    macro = YourNewMacro.new(nil, project(FIXTURE), nil)
+    result = macro.execute
+    assert result
+  end
+
+end
+</pre>
+<p>The skeleton project also has a sample integration test set up for you, which points to a bogus Mingle server, and uses bad credentials. Replace this resource <span class="caps">URL</span> with the <span class="caps">URL</span> for a deployed instance within your organization. The helper method project(&#8230;) which takes the resource <span class="caps">URL</span>, loads the data from the <span class="caps">XML</span> data obtained from the live instance of Mingle.</p>
+<p>You can see examples of integration tests in the average macro that is packaged with Mingle in the vendor/plugins/average_macro directory. These tests run against a standard template that ships with Mingle, and so you should be able to run them within your organization too, without a problem.</p>
+<h2>Deploying your macro</h2>
+<table>
+	<tr>
+		<th colspan="2"><span class="caps">CAUTION</span></th>
+	</tr>
+	<tr>
+		<td colspan="2">Before you deploy anything to your mingle instance, please make sure that it is completely safe. This is especially important if the macro was developed by a third party.</td>
+	</tr>
+	<tr>
+		<td colspan="2">Here is a list of things that you should look out for. this list should not be considered complete, it is just a representative sample.</td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td>If mingle runs as a privileged user, the macro could end up damaging the host machine</td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td>Through direct sql calls, rather than using supplied mql execution mechanism, the macro could gain access to data that people would normally not be authorized to see</td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td>Lengthy calls to external systems could tie up mingle resources and leave the app unresponsive</td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td>System calls, if used, must be inspected and well-understood prior to deployment</td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td>If the macro emits bad Javascript, you could break basic functionality on the Mingle UI</td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td>Other database activity, such as transaction commits, should be monitored and avoided</td>
+	</tr>
+</table>
+<p>To deploy your macro to a locally deployed instance of Mingle, which is running at mingle_root</p>
+<pre>
+% rake macro:deploy MINGLE_LOCATION=/path/to/mingle_root
+</pre>
+<p>where /path/to/mingle_root is the location where Mingle is installed.</p>
+<ul>
+	<li>On Windows, this is the location that the installer installed Mingle at</li>
+	<li>On <span class="caps">OSX</span>, this will be within the app bundle, at <mingle_application_bundle>/Contents/Resources/app</li>
+	<li>On *NIX, this is the expanded archive</li>
+</ul>
+<p>The entire macro folder and its contents will be copied over into the vendor/plugins directory of that Mingle installation. Once deployed, the server will need to be restarted in order for the macro to become available for use.</p>
+<p>Alternatively, you could also copy the folder by hand into the same location.</p>
+<table>
+	<tr>
+		<th><span class="caps">LEGAL</span> <span class="caps">NOTICES</span> <span class="caps">AND</span> <span class="caps">INFORMATION</span></th>
+	</tr>
+	<tr>
+		<td>This Getting Started file and the mingle-macro-development-toolkit-1.3.2.gem are owned exclusively by ThoughtWorks, Inc., and ThoughtWorks reserves all rights therein.</td>
+	</tr>
+	<tr>
+		<td>We believe that it is a sound practice from legal, business and software development perspectives to always provide copyright information and license information with any software that you make available to others.  We have provided this information for the Mingle Macro Development Toolkit in the <span class="caps">LICENSE</span>.txt file distributed with the Toolkit.  We encourage you to use that as an example to follow when marking your software with a copyright notice, as well as providing users with a license to your software.  We have chosen to use the <span class="caps">MIT</span> License, an Open Source License, you may choose to use the same or a different license. If you are going to use an Open Source License we strongly encourage you to use a license approved by the Open Source Initiative, available here: http://www.opensource.org/licenses.</td>
+	</tr>
+</table>
+    <p class="coda">
+      <a href="http://studios.thoughtworks.com/mingle-agile-project-management">ThoughtWorks Inc</a><br>
+    </p>
+</div>
+</body>
 </html>
