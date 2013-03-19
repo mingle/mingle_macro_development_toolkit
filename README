@@ -37,7 +37,7 @@ the macro skeleton as follows
 
   % new_mingle_macro risk_meter
 
-The skeleton project will also contain a file, called "getting_started.txt" that will walk you through the steps
+The skeleton project will also contain a file, called "getting_started.txt"[https://github.com/ThoughtWorksStudios/mingle_macro_development_toolkit/blob/master/templates/getting_started.txt] that will walk you through the steps
 of fleshing out your macro.
 
 == SUPPORT:
