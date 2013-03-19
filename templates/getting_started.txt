@@ -1,27 +1,25 @@
+
+
 A background on macros in Mingle
 ---------------------------------
  
-Macros are a special kind of markup in the Mingle wiki. A macro is identified by the following markup generic syntax
+Macros allow you to create tables, charts and graphs using data from your Mingle project. A macro is identified by the following markup generic syntax
  
-{{ 
   macro_name
     parameter1: value1
     parameter2: value2
     ...
-}}
  
 The markup has to be valid YAML syntax. Specifically, this means that the markup is sensitive to spacing and indentation. For more help around YAML and what constitutes valid YAML markup, you can refer to http://yaml.org/spec/current.html
  
 Specific examples of this include the pre-written macros, such as the value, average & table macros and the macros for all the charts.
  
-When Mingle encounters a macro while rendering the markup, it delegates handling of the macro to a custom class behind the scenes that is registered to handle it. e.g., if Mingle encountered the following markup,
+When Mingle encounters a macro in your card or page content, it delegates handling of the macro to a custom class behind the scenes that is registered to handle it. For example, if Mingle encountered the following macro,
  
-{{
   average
     query: SELECT 'Pre-release Estimate' WHERE Release = (current release)
-}}
  
-it would parse the content between the opening and closing double braces, and identify the following.
+it would parse the content and identify the following.
  
 Macro Name: average
 Macro Parameters: {query => "SELECT 'Pre-release Estimate' WHERE Release = (current release)"}
@@ -55,7 +53,8 @@ The second parameter is special and could be either a single project or multiple
  
 The execute method uses the MQL execution facility that the project class provides, to execute the MQL string that is passed into through the parameters hash. It then formats the results to be a number, and provides that result of the execute command.
  
-For more help on what constitutes valid MQL, you can refer to our help documentation at http://studios.thoughtworks.com/mingle-agile-project-management/3.1/help/mql_reference.html
+For more help on what constitutes valid MQL, you can refer to our help documentation at 
+http://www.thoughtworks-studios.com/docs/mingle/current/help/mql_reference.html
  
 To see an example of how to use the gem to report across multiple projects, refer to the cross_project_rollup macro which ships with versions of Mingle 3.0 and higher.
  
@@ -94,14 +93,12 @@ your_new_macro
  
 The lib directory contains the actual macro, and the test folders give you the option to run the tests either against local YAML based fixtures, or using REST to test against a deployed mingle instance.
  
-When this macro is deployed to Mingle, all wiki markup of the form
+When this macro is deployed to Mingle, all content of the form
  
-{{
   your_new_macro
     parameter1: value1
     parameter2: <some_mql_statement>
     ...
-}}
  
 will be parsed as YAML and handling will be delegated to an instance of your macro class, YourNewMacro. The parameters will be parsed into a Ruby hash, of the following structure:
  
@@ -113,7 +110,7 @@ def self.supports_project_group?
   true
 end
  
-As an example of what you can do with this toolkit is the following macro, which uses the Google Charting API to render a Google-o-meter style chart to represent work completed in a fuel gauge style meter.
+The following is an example of what you can do with this toolkit. It uses the Google Charting API to render a Google-o-meter style chart to represent work completed in a fuel gauge style meter.
  
 class WorkGauge
    
@@ -122,6 +119,7 @@ class WorkGauge
     @project = project
     @current_user = current_user
   end
+
      
   def execute
     completed_work = @project.execute_mql(@parameters['completed_work']).first.values.sum
@@ -133,52 +131,67 @@ class WorkGauge
    
 end
  
-The execute method can return any valid HTML or Javascript content. The ability to emit Javascript content, specifically, can only be used on Mingle version 2.3 and above.
+The execute method can return any valid HTML or Javascript content.
  
 The following example demonstrates how to use the Javascript emission functionality to embed a Google Maps map. 
  
 Note: For this example to work, you will have to supply your own Google Maps API key as a part of the script tag that loads the Google API.
  
-class GoogleMap
- 
+require 'uri'
+require 'rack'
+require "thread"
+require "active_support"
+
+class GoogleMapsMacro
+
   def initialize(parameters, project, current_user)
-    @latitude = parameters['latitude'] || 39.55
-    @longitude = parameters['longitude'] || 116.25
-    @zoom_level = parameters['zoom_level'] || 8
+    @src = parameters['src']
+    @width = parameters['width']
+    @height = parameters['height']
   end
- 
+    
   def execute
-    <<-HTML
-    h2. Google Maps JavaScript API Example: Simple Map
-     
-    <div id="map_canvas" style="width: 600px; height: 400px"></div>
-    <script src="http://maps.google.com/maps?file=api" type="text/javascript"></script>
-    <script type="text/javascript">
-      // register the initialize function for executing after page loaded.
-      MingleJavascript.register(function initialize() {
-        if (GBrowserIsCompatible()) {
-          var map = new GMap2(document.getElementById("map_canvas"));
-          map.setCenter(new GLatLng(#{@latitude}, #{@longitude}), #{@zoom_level});
-        }
-      })
-    </script>
-    HTML
+    raise "Parameter src must be a recognized Google Maps URL." unless valid?
+    
+    %{
+      <iframe src="#{source_with_embedded_output}" width="#{@width}" height="#{@height}" /> 
+    }
   end
- 
+  
+  def valid?
+    return false unless @src
+    begin
+      uri = URI.parse(@src)
+      return unless uri.host
+      return unless (uri.scheme == "http" ||uri.scheme == "https")
+      uri.host.start_with?('maps.google.com')
+    rescue URI::InvalidURIError
+      false
+    end
+  end
+  
   def can_be_cached?
-    false  # if appropriate, switch to true once you move your macro to production
+    true
   end
-     
+  
+  private
+  
+  def source_with_embedded_output
+    uri = URI.parse(@src)
+    query = uri.query || ""
+    query_params = Rack::Utils.parse_query(query)
+    uri.query = query_params.merge('output' => 'embed').to_query
+    uri.to_s
+  end
+  
 end
  
-Long running or integration macros which run on server will result in long page render times. We recommend these sort
-of macros use Javascript (or JSONP) to offload work to the browser.
+Long running or integration macros which run on server will result in long page render times. We recommend that these macros use Javascript (or JSONP) to offload work to the browser.
  
 You can find both simpler and more complex examples in the vendor/plugins/sample_macros directory.
  
-Tip: If you wish to use JQuery, you will have to add a call to JQuery.noConflict() to prevent conflicts with the Prototype library that ships with Mingle. You can refer to the JQuery documentation here (http://docs.jquery.com/Core/jQuery.noConflict) to see the correct order in which to load the libraries and other conditions to be followed in order to make this work properly. If you do not do this, you can still use JQuery without using the $ shorthand for the jQuery function.
- 
- 
+Tip: If you wish to use JQuery use $j instead of $ or JQuery.
+
 Unit testing your macro
 ------------------------
  
@@ -215,7 +228,7 @@ Integration testing your macro
  
 ########################################################NOTE###############################################################
 #                                                                                                                         #
-# IN ORDER TO RUN THE INTEGRATION TESTS, YOU WILL NEED TO TURN ON BASIC AUTHENTICATION FOR THE MINGLE 3.1 SERVER THAT YOU # 
+# IN ORDER TO RUN THE INTEGRATION TESTS, YOU WILL NEED TO TURN ON BASIC AUTHENTICATION FOR THE MINGLE SERVER THAT YOU     # 
 # ARE GOING TO BE TESTING AGAINST.                                                                                        #
 #                                                                                                                         #
 #########################################################NOTE##############################################################
@@ -246,7 +259,7 @@ end
  
 The skeleton project also has a sample integration test set up for you, which points to a bogus Mingle server, and uses bad credentials. Replace this resource URL with the URL for a deployed instance within your organization. The helper method project(...) which takes the resource URL, loads the data from the XML data obtained from the live instance of Mingle. 
  
-You can see examples of integration tests in the average macro that is packaged with Mingle in the vendor/plugins/average_macro directory. These tests run against a standard template that ships with Mingle 3.1, and so you should be able to run them within your organization too, without a problem.
+You can see examples of integration tests in the average macro that is packaged with Mingle in the vendor/plugins/average_macro directory. These tests run against a standard template that ships with Mingle, so you should be able to run them within your organization too without a problem.
  
 To run your integration tests, run 
  
@@ -278,7 +291,7 @@ To deploy your macro to a locally deployed instance of Mingle, which is running 
  
 % rake macro:deploy MINGLE_LOCATION=/path/to/mingle_root
  
-where /path/to/mingle_root is the location where Mingle 3.1 is installed. 
+where /path/to/mingle_root is the location where Mingle is installed. 
  
 * On Windows, this is the location that the installer installed Mingle at
 * On OSX, this will be within the app bundle, at <mingle_application_bundle>/Contents/Resources/app
@@ -294,12 +307,12 @@ Alternatively, you could also copy the folder by hand into the same location.
 #                                                                                                                          #
 #########################################################NOTE###############################################################
  
-This Getting Started file and the mingle-macro-development-toolkit-1.3.1.gem are owned exclusively by ThoughtWorks, Inc., 
+This Getting Started file and the mingle-macro-development-toolkit-2.0.1.gem are owned exclusively by ThoughtWorks, Inc., 
 and ThoughtWorks reserves all rights therein.
  
 We believe that it is a sound practice from legal, business and software development perspectives to always provide copyright 
 information and license information with any software that you make available to others.  We have provided this information 
-for the Mingle Macro Development Toolkit in the LICENSE.txt file distributed with the Toolkit.  We encourage you to use that 
+for the Mingle Macro Development Toolkit in the LICENSE file distributed with the Toolkit.  We encourage you to use that 
 as an example to follow when marking your software with a copyright notice, as well as providing users with a license to your 
 software.  We have chosen to use the MIT License, an Open Source License, you may choose to use the same or a different 
 license. If you are going to use an Open Source License we strongly encourage you to use a license approved by the Open Source 

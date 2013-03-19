@@ -2,7 +2,7 @@
 
 https://github.com/ThoughtWorksStudios/mingle_macro_development_toolkit
 
-NOTE: This new version will only work with upcoming Mingle 12.1 release and later. For older versions of Mingle, please use version 1.3.3
+NOTE: This new version will only work with Mingle 12.1 release and later. For older versions of Mingle, please use version 1.3.3
 
 This toolkit provides support for developing, testing and deploying custom Mingle macros.
 
