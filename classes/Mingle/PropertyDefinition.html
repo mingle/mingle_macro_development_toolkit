@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Mingle::PropertyDefinition</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Mingle::PropertyDefinition</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/macro_development_toolkit/mingle/property_definition_rb.html">
+                lib/macro_development_toolkit/mingle/property_definition.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+    <div id="diagram">
+      <map id="map" name="map">
+  <area shape="rect" coords="736,51,917,99"      href="CardTypePropertyDefinition.html" alt="CardTypePropertyDefinition" />
+  <area shape="rect" coords="584,51,712,99"      href="PropertyDefinition.html" alt="PropertyDefinition" />
+  <area shape="rect" coords="451,51,560,99"      href="ProjectVariable.html" alt="ProjectVariable" />
+  <area shape="rect" coords="347,51,427,99"      href="CardType.html" alt="CardType" />
+  <area shape="rect" coords="251,51,323,99"      href="User.html" alt="User" />
+  <area shape="rect" coords="155,51,227,99"      href="Project.html" alt="Project" />
+  <area shape="rect" coords="27,51,131,99"      href="PropertyValue.html" alt="PropertyValue" />
+  <area shape="rect" coords="16,16,952,109"      href="../Mingle.html" alt="Mingle" />
+</map>
+<img src="../../dot/f_0.png" usemap="#map" border="0" alt="dot/f_0.png">
+    </div>
+
+    <div id="description">
+      <p>
+This is a lightweight representation of a ProjectDefinition in <a
+href="../Mingle.html">Mingle</a>
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000034">calculated?</a>&nbsp;&nbsp;
+      <a href="#M000029">card_types</a>&nbsp;&nbsp;
+      <a href="#M000035">date?</a>&nbsp;&nbsp;
+      <a href="#M000028">description</a>&nbsp;&nbsp;
+      <a href="#M000027">name</a>&nbsp;&nbsp;
+      <a href="#M000026">new</a>&nbsp;&nbsp;
+      <a href="#M000033">numeric?</a>&nbsp;&nbsp;
+      <a href="#M000032">textual?</a>&nbsp;&nbsp;
+      <a href="#M000036">to_s</a>&nbsp;&nbsp;
+      <a href="#M000030">type_description</a>&nbsp;&nbsp;
+      <a href="#M000031">values</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MANAGED_TEXT_TYPE</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;Managed text list&quot;</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ANY_TEXT_TYPE</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;Any text&quot;</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MANAGED_NUMBER_TYPE</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;Managed number list&quot;</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ANY_NUMBER_TYPE</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;Any number&quot;</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DATE_TYPE</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;Date&quot;</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FORMULA_TYPE</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;Formula&quot;</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">USER_TYPE</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;Automatically generated from the team list&quot;</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CARD_TYPE</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;Card&quot;</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">AGGREGATE_TYPE</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;Aggregate&quot;</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TREE_RELATIONSHIP_TYPE</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;Any card used in tree&quot;</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">card_types_property_definitions_loader</td>
+          <td class="context-item-value">&nbsp;[W]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">values_loader</td>
+          <td class="context-item-value">&nbsp;[W]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000026" class="method-detail">
+        <a name="M000026"></a>
+
+        <div class="method-heading">
+          <a href="#M000026" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">(full_property_definition)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000026-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000026-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/macro_development_toolkit/mingle/property_definition.rb, line 18</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">full_property_definition</span>)
+      <span class="ruby-ivar">@full_property_definition</span> = <span class="ruby-identifier">full_property_definition</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000034" class="method-detail">
+        <a name="M000034"></a>
+
+        <div class="method-heading">
+          <a href="#M000034" class="method-signature">
+          <span class="method-name">calculated?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<b>returns</b>: True if a property definition has only calculated <a
+href="PropertyDefinition.html#M000031">values</a>, such as ones of Formula
+&amp; Aggregate types
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000034-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000034-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/macro_development_toolkit/mingle/property_definition.rb, line 89</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">calculated?</span>
+      <span class="ruby-identifier">type_description</span> <span class="ruby-operator">==</span> <span class="ruby-constant">FORMULA_TYPE</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">type_description</span> <span class="ruby-operator">==</span> <span class="ruby-constant">AGGREGATE_TYPE</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000029" class="method-detail">
+        <a name="M000029"></a>
+
+        <div class="method-heading">
+          <a href="#M000029" class="method-signature">
+          <span class="method-name">card_types</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<b>returns</b>: A list of CardTypes that this <a
+href="PropertyDefinition.html">PropertyDefinition</a> is valid for
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000029-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000029-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/macro_development_toolkit/mingle/property_definition.rb, line 33</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">card_types</span>
+      <span class="ruby-ivar">@card_types_property_definitions_loader</span>.<span class="ruby-identifier">load</span>.<span class="ruby-identifier">collect</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:card_type</span>).<span class="ruby-identifier">sort_by</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:position</span>)
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000035" class="method-detail">
+        <a name="M000035"></a>
+
+        <div class="method-heading">
+          <a href="#M000035" class="method-signature">
+          <span class="method-name">date?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<b>returns</b>: True if a property definition has only numeric <a
+href="PropertyDefinition.html#M000031">values</a>, such as the Date type
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000035-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000035-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/macro_development_toolkit/mingle/property_definition.rb, line 94</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">date?</span>
+      <span class="ruby-identifier">type_description</span> <span class="ruby-operator">==</span> <span class="ruby-constant">DATE_TYPE</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000028" class="method-detail">
+        <a name="M000028"></a>
+
+        <div class="method-heading">
+          <a href="#M000028" class="method-signature">
+          <span class="method-name">description</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<b>returns</b>: The <a
+href="PropertyDefinition.html#M000028">description</a> of this <a
+href="PropertyDefinition.html">PropertyDefinition</a>
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000028-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000028-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/macro_development_toolkit/mingle/property_definition.rb, line 28</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">description</span>
+      <span class="ruby-ivar">@full_property_definition</span>.<span class="ruby-identifier">description</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000027" class="method-detail">
+        <a name="M000027"></a>
+
+        <div class="method-heading">
+          <a href="#M000027" class="method-signature">
+          <span class="method-name">name</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<b>returns</b>: The <a href="PropertyDefinition.html#M000027">name</a> of
+this <a href="PropertyDefinition.html">PropertyDefinition</a>
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000027-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000027-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/macro_development_toolkit/mingle/property_definition.rb, line 23</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">name</span>
+      <span class="ruby-ivar">@full_property_definition</span>.<span class="ruby-identifier">name</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000033" class="method-detail">
+        <a name="M000033"></a>
+
+        <div class="method-heading">
+          <a href="#M000033" class="method-signature">
+          <span class="method-name">numeric?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<b>returns</b>: True if a property definition has only numeric <a
+href="PropertyDefinition.html#M000031">values</a>, such as ones of
+Un/managed number types
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000033-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000033-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/macro_development_toolkit/mingle/property_definition.rb, line 84</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">numeric?</span>
+      <span class="ruby-identifier">type_description</span> <span class="ruby-operator">==</span> <span class="ruby-constant">MANAGED_NUMBER_TYPE</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">type_description</span> <span class="ruby-operator">==</span> <span class="ruby-constant">ANY_NUMBER_TYPE</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000032" class="method-detail">
+        <a name="M000032"></a>
+
+        <div class="method-heading">
+          <a href="#M000032" class="method-signature">
+          <span class="method-name">textual?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<b>returns</b>: True if a property definition has only textual <a
+href="PropertyDefinition.html#M000031">values</a>, such as ones of
+Un/managed text types
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000032-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000032-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/macro_development_toolkit/mingle/property_definition.rb, line 79</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">textual?</span>
+      <span class="ruby-identifier">type_description</span> <span class="ruby-operator">==</span> <span class="ruby-constant">MANAGED_TEXT_TYPE</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">type_description</span> <span class="ruby-operator">==</span> <span class="ruby-constant">ANY_TEXT_TYPE</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000036" class="method-detail">
+        <a name="M000036"></a>
+
+        <div class="method-heading">
+          <a href="#M000036" class="method-signature">
+          <span class="method-name">to_s</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000036-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000036-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/macro_development_toolkit/mingle/property_definition.rb, line 98</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>
+      <span class="ruby-node">&quot;PropertyDefinition[name=#{name},type=#{type}]&quot;</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000030" class="method-detail">
+        <a name="M000030"></a>
+
+        <div class="method-heading">
+          <a href="#M000030" class="method-signature">
+          <span class="method-name">type_description</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<b>returns</b>: A short <a
+href="PropertyDefinition.html#M000028">description</a> of the property
+definition. This will be one of the above <a
+href="PropertyDefinition.html#M000031">values</a>
+</p>
+<ul>
+<li>MANAGED_TEXT_TYPE
+
+</li>
+<li>ANY_TEXT_TYPE
+
+</li>
+<li>MANAGED_NUMBER_TYPE
+
+</li>
+<li>ANY_NUMBER_TYPE
+
+</li>
+<li>DATE_TYPE
+
+</li>
+<li>FORMULA_TYPE
+
+</li>
+<li>USER_TYPE
+
+</li>
+<li>CARD_TYPE
+
+</li>
+<li>AGGREGATE_TYPE
+
+</li>
+<li>TREE_RELATIONSHIP_TYPE
+
+</li>
+</ul>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000030-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000030-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/macro_development_toolkit/mingle/property_definition.rb, line 49</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">type_description</span>
+      <span class="ruby-ivar">@full_property_definition</span>.<span class="ruby-identifier">type_description</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000031" class="method-detail">
+        <a name="M000031"></a>
+
+        <div class="method-heading">
+          <a href="#M000031" class="method-signature">
+          <span class="method-name">values</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<b>returns</b>: A list of explicitly defined <a
+href="PropertyDefinition.html#M000031">values</a> that this <a
+href="PropertyDefinition.html">PropertyDefinition</a> has This method
+should ONLY be called for property definitions that are of the following
+types
+</p>
+<ul>
+<li>MANAGED_TEXT_TYPE
+
+</li>
+<li>MANAGED_NUMBER_TYPE
+
+</li>
+<li>USER_TYPE
+
+</li>
+</ul>
+<p>
+Attempting to call this method for the following types will throw an
+Exception
+</p>
+<ul>
+<li>ANY_TEXT_TYPE
+
+</li>
+<li>ANY_NUMBER_TYPE
+
+</li>
+<li>FORMULA_TYPE
+
+</li>
+<li>AGGREGATE_TYPE
+
+</li>
+<li>CARD_TYPE
+
+</li>
+<li>TREE_RELATIONSHIP_TYPE
+
+</li>
+<li>DATE_TYPE
+
+</li>
+</ul>
+<p>
+To get the <a href="PropertyDefinition.html#M000031">values</a> for the
+above types, you can use MQL, such as &quot;SELECT property_name&quot; to
+get a list of <a href="PropertyDefinition.html#M000031">values</a>
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000031-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000031-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/macro_development_toolkit/mingle/property_definition.rb, line 70</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">values</span>
+      <span class="ruby-identifier">valid_property_types_to_call_value_on</span> = [<span class="ruby-constant">MANAGED_TEXT_TYPE</span>, <span class="ruby-constant">MANAGED_NUMBER_TYPE</span>, <span class="ruby-constant">USER_TYPE</span>]
+      <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">valid_property_types_to_call_value_on</span>.<span class="ruby-identifier">any?</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">type_description</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">t</span>}
+        <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Do not call this method for property definitions of types other than MANAGED_TEXT_TYPE, MANAGED_NUMBER_TYPE, USER_TYPE.&quot;</span> 
+      <span class="ruby-keyword kw">end</span>  
+      <span class="ruby-ivar">@values_loader</span>.<span class="ruby-identifier">load</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

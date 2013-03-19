@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: MingleModelLoaders</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">MingleModelLoaders</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/macro_development_toolkit/mingle_model_loader_rb.html">
+                lib/macro_development_toolkit/mingle_model_loader.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+    <div id="diagram">
+      <map id="map" name="map">
+  <area shape="rect" coords="1443,51,1515,99"      href="MingleModelLoaders/Base.html" alt="Base" />
+  <area shape="rect" coords="1413,147,1515,195"      href="MingleModelLoaders/ProjectLoader.html" alt="ProjectLoader" />
+  <area shape="rect" coords="1224,51,1395,99"      href="MingleModelLoaders/PropertyDefinitionsLoader.html" alt="PropertyDefinitionsLoader" />
+  <area shape="rect" coords="1053,51,1200,99"      href="MingleModelLoaders/PropertyValuesLoader.html" alt="PropertyValuesLoader" />
+  <area shape="rect" coords="933,51,1029,99"      href="MingleModelLoaders/TeamLoader.html" alt="TeamLoader" />
+  <area shape="rect" coords="757,51,909,99"      href="MingleModelLoaders/ProjectVariablesLoader.html" alt="ProjectVariablesLoader" />
+  <area shape="rect" coords="616,51,733,99"      href="MingleModelLoaders/CardTypeLoader.html" alt="CardTypeLoader" />
+  <area shape="rect" coords="427,51,592,99"      href="MingleModelLoaders/PropertyDefinitionLoader.html" alt="PropertyDefinitionLoader" />
+  <area shape="rect" coords="173,51,403,99"      href="MingleModelLoaders/CardTypesPropertyDefinitionsLoader.html" alt="CardTypesPropertyDefinitionsLoader" />
+  <area shape="rect" coords="27,51,149,99"      href="MingleModelLoaders/CardTypesLoader.html" alt="CardTypesLoader" />
+  <area shape="rect" coords="16,16,1525,205"      href="MingleModelLoaders.html" alt="MingleModelLoaders" />
+</map>
+<img src="../dot/f_7.png" usemap="#map" border="0" alt="dot/f_7.png">
+    </div>
+
+    <div id="description">
+      <p>
+<a href="MingleModelLoaders.html">MingleModelLoaders</a> understand how to
+load a graph of lightweight objects from the <a
+href="Mingle.html">Mingle</a> model objects at runtime, when the custom
+macro is deployed into production.
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="MingleModelLoaders/Base.html" class="link">MingleModelLoaders::Base</a><br />
+Class <a href="MingleModelLoaders/CardTypeLoader.html" class="link">MingleModelLoaders::CardTypeLoader</a><br />
+Class <a href="MingleModelLoaders/CardTypesLoader.html" class="link">MingleModelLoaders::CardTypesLoader</a><br />
+Class <a href="MingleModelLoaders/CardTypesPropertyDefinitionsLoader.html" class="link">MingleModelLoaders::CardTypesPropertyDefinitionsLoader</a><br />
+Class <a href="MingleModelLoaders/ProjectLoader.html" class="link">MingleModelLoaders::ProjectLoader</a><br />
+Class <a href="MingleModelLoaders/ProjectVariablesLoader.html" class="link">MingleModelLoaders::ProjectVariablesLoader</a><br />
+Class <a href="MingleModelLoaders/PropertyDefinitionLoader.html" class="link">MingleModelLoaders::PropertyDefinitionLoader</a><br />
+Class <a href="MingleModelLoaders/PropertyDefinitionsLoader.html" class="link">MingleModelLoaders::PropertyDefinitionsLoader</a><br />
+Class <a href="MingleModelLoaders/PropertyValuesLoader.html" class="link">MingleModelLoaders::PropertyValuesLoader</a><br />
+Class <a href="MingleModelLoaders/TeamLoader.html" class="link">MingleModelLoaders::TeamLoader</a><br />
+
+    </div>
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: project.rb</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>project.rb</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>lib/macro_development_toolkit/mingle/project.rb
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Thu Jan 27 12:22:42 -0800 2011</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+    <div id="diagram">
+      <map id="map" name="map">
+  <area shape="rect" coords="736,51,917,99"      href="../../../../classes/Mingle/CardTypePropertyDefinition.html" alt="CardTypePropertyDefinition" />
+  <area shape="rect" coords="584,51,712,99"      href="../../../../classes/Mingle/PropertyDefinition.html" alt="PropertyDefinition" />
+  <area shape="rect" coords="451,51,560,99"      href="../../../../classes/Mingle/ProjectVariable.html" alt="ProjectVariable" />
+  <area shape="rect" coords="347,51,427,99"      href="../../../../classes/Mingle/CardType.html" alt="CardType" />
+  <area shape="rect" coords="251,51,323,99"      href="../../../../classes/Mingle/User.html" alt="User" />
+  <area shape="rect" coords="155,51,227,99"      href="../../../../classes/Mingle/Project.html" alt="Project" />
+  <area shape="rect" coords="27,51,131,99"      href="../../../../classes/Mingle/PropertyValue.html" alt="PropertyValue" />
+  <area shape="rect" coords="16,16,952,109"      href="../../../../classes/Mingle.html" alt="Mingle" />
+</map>
+<img src="../../../../dot/f_0.png" usemap="#map" border="0" alt="dot/f_0.png">
+    </div>
+
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

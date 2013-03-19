@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Mingle</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Mingle</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/macro_development_toolkit/mingle/card_type_rb.html">
+                lib/macro_development_toolkit/mingle/card_type.rb
+                </a>
+        <br />
+                <a href="../files/lib/macro_development_toolkit/mingle/card_type_property_definition_rb.html">
+                lib/macro_development_toolkit/mingle/card_type_property_definition.rb
+                </a>
+        <br />
+                <a href="../files/lib/macro_development_toolkit/mingle/project_rb.html">
+                lib/macro_development_toolkit/mingle/project.rb
+                </a>
+        <br />
+                <a href="../files/lib/macro_development_toolkit/mingle/project_variable_rb.html">
+                lib/macro_development_toolkit/mingle/project_variable.rb
+                </a>
+        <br />
+                <a href="../files/lib/macro_development_toolkit/mingle/property_definition_rb.html">
+                lib/macro_development_toolkit/mingle/property_definition.rb
+                </a>
+        <br />
+                <a href="../files/lib/macro_development_toolkit/mingle/property_value_rb.html">
+                lib/macro_development_toolkit/mingle/property_value.rb
+                </a>
+        <br />
+                <a href="../files/lib/macro_development_toolkit/mingle/user_rb.html">
+                lib/macro_development_toolkit/mingle/user.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+    <div id="diagram">
+      <map id="map" name="map">
+  <area shape="rect" coords="736,51,917,99"      href="Mingle/CardTypePropertyDefinition.html" alt="CardTypePropertyDefinition" />
+  <area shape="rect" coords="584,51,712,99"      href="Mingle/PropertyDefinition.html" alt="PropertyDefinition" />
+  <area shape="rect" coords="451,51,560,99"      href="Mingle/ProjectVariable.html" alt="ProjectVariable" />
+  <area shape="rect" coords="347,51,427,99"      href="Mingle/CardType.html" alt="CardType" />
+  <area shape="rect" coords="251,51,323,99"      href="Mingle/User.html" alt="User" />
+  <area shape="rect" coords="155,51,227,99"      href="Mingle/Project.html" alt="Project" />
+  <area shape="rect" coords="27,51,131,99"      href="Mingle/PropertyValue.html" alt="PropertyValue" />
+  <area shape="rect" coords="16,16,952,109"      href="Mingle.html" alt="Mingle" />
+</map>
+<img src="../dot/f_0.png" usemap="#map" border="0" alt="dot/f_0.png">
+    </div>
+
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="Mingle/CardType.html" class="link">Mingle::CardType</a><br />
+Class <a href="Mingle/CardTypePropertyDefinition.html" class="link">Mingle::CardTypePropertyDefinition</a><br />
+Class <a href="Mingle/Project.html" class="link">Mingle::Project</a><br />
+Class <a href="Mingle/ProjectVariable.html" class="link">Mingle::ProjectVariable</a><br />
+Class <a href="Mingle/PropertyDefinition.html" class="link">Mingle::PropertyDefinition</a><br />
+Class <a href="Mingle/PropertyValue.html" class="link">Mingle::PropertyValue</a><br />
+Class <a href="Mingle/User.html" class="link">Mingle::User</a><br />
+
+    </div>
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

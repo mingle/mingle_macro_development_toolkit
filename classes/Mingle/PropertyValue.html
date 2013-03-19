@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Mingle::PropertyValue</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Mingle::PropertyValue</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/macro_development_toolkit/mingle/property_value_rb.html">
+                lib/macro_development_toolkit/mingle/property_value.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+    <div id="diagram">
+      <map id="map" name="map">
+  <area shape="rect" coords="736,51,917,99"      href="CardTypePropertyDefinition.html" alt="CardTypePropertyDefinition" />
+  <area shape="rect" coords="584,51,712,99"      href="PropertyDefinition.html" alt="PropertyDefinition" />
+  <area shape="rect" coords="451,51,560,99"      href="ProjectVariable.html" alt="ProjectVariable" />
+  <area shape="rect" coords="347,51,427,99"      href="CardType.html" alt="CardType" />
+  <area shape="rect" coords="251,51,323,99"      href="User.html" alt="User" />
+  <area shape="rect" coords="155,51,227,99"      href="Project.html" alt="Project" />
+  <area shape="rect" coords="27,51,131,99"      href="PropertyValue.html" alt="PropertyValue" />
+  <area shape="rect" coords="16,16,952,109"      href="../Mingle.html" alt="Mingle" />
+</map>
+<img src="../../dot/f_0.png" usemap="#map" border="0" alt="dot/f_0.png">
+    </div>
+
+    <div id="description">
+      <p>
+Copyright 2009 ThoughtWorks, Inc. All rights reserved.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000066">color</a>&nbsp;&nbsp;
+      <a href="#M000064">db_identifier</a>&nbsp;&nbsp;
+      <a href="#M000063">display_value</a>&nbsp;&nbsp;
+      <a href="#M000062">new</a>&nbsp;&nbsp;
+      <a href="#M000067">property_definition</a>&nbsp;&nbsp;
+      <a href="#M000068">to_s</a>&nbsp;&nbsp;
+      <a href="#M000065">url_identifier</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">property_definition_loader</td>
+          <td class="context-item-value">&nbsp;[W]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000062" class="method-detail">
+        <a name="M000062"></a>
+
+        <div class="method-heading">
+          <a href="#M000062" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">(property_value)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000062-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000062-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/macro_development_toolkit/mingle/property_value.rb, line 6</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">property_value</span>)
+      <span class="ruby-ivar">@property_value</span> = <span class="ruby-identifier">property_value</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000066" class="method-detail">
+        <a name="M000066"></a>
+
+        <div class="method-heading">
+          <a href="#M000066" class="method-signature">
+          <span class="method-name">color</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<b>returns</b>: The hex <a href="PropertyValue.html#M000066">color</a> code
+for this <a href="PropertyValue.html">PropertyValue</a>
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000066-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000066-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/macro_development_toolkit/mingle/property_value.rb, line 50</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">color</span>
+      <span class="ruby-ivar">@property_value</span>.<span class="ruby-identifier">color</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-value str">'#'</span>, <span class="ruby-value str">''</span>)
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000064" class="method-detail">
+        <a name="M000064"></a>
+
+        <div class="method-heading">
+          <a href="#M000064" class="method-signature">
+          <span class="method-name">db_identifier</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<b>returns</b>: The identifier that is used to represent this value in the
+database You will most likely not have to use this value in your macros For
+the various property types, the following are the values you can expect to
+see
+</p>
+<ul>
+<li>Managed/Unmanaged text : The string value of the value
+
+</li>
+<li>Managed/Unmanaged numeric : The numeric string representation of the value
+
+</li>
+<li>Date : The canonical date format, as stored in the database
+
+</li>
+<li><a href="User.html">User</a> : The id of the user in the database
+
+</li>
+<li>Formula : Either the date or the numeric value, formatted as above
+
+</li>
+<li>Card : The id of the card in the database
+
+</li>
+</ul>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000064-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000064-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/macro_development_toolkit/mingle/property_value.rb, line 32</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">db_identifier</span>
+      <span class="ruby-ivar">@property_value</span>.<span class="ruby-identifier">db_identifier</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000063" class="method-detail">
+        <a name="M000063"></a>
+
+        <div class="method-heading">
+          <a href="#M000063" class="method-signature">
+          <span class="method-name">display_value</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<b>returns</b>: The display value of this value Use the result of this
+method to display this value on the UI For the various property types, the
+following are the values you can expect to see
+</p>
+<ul>
+<li>Managed/Unmanaged text : The string value of the value
+
+</li>
+<li>Managed/Unmanaged numeric : The numeric string representation of the value
+
+</li>
+<li>Date : The list of values this property has on all cards on the project,
+formatted using the project date format
+
+</li>
+<li><a href="User.html">User</a> : The name of the user
+
+</li>
+<li>Formula : Either the date or the numeric value, formatted as above
+
+</li>
+<li>Card : The number of the card, followed by the name of the card
+
+</li>
+</ul>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000063-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000063-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/macro_development_toolkit/mingle/property_value.rb, line 19</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">display_value</span>
+      <span class="ruby-ivar">@property_value</span>.<span class="ruby-identifier">display_value</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000067" class="method-detail">
+        <a name="M000067"></a>
+
+        <div class="method-heading">
+          <a href="#M000067" class="method-signature">
+          <span class="method-name">property_definition</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<b>returns</b>: The <a
+href="PropertyDefinition.html">PropertyDefinition</a> that this value
+belongs to
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000067-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000067-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/macro_development_toolkit/mingle/property_value.rb, line 55</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">property_definition</span>
+      <span class="ruby-ivar">@property_definition_loader</span>.<span class="ruby-identifier">load</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000068" class="method-detail">
+        <a name="M000068"></a>
+
+        <div class="method-heading">
+          <a href="#M000068" class="method-signature">
+          <span class="method-name">to_s</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000068-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000068-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/macro_development_toolkit/mingle/property_value.rb, line 59</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>
+      <span class="ruby-node">&quot;PropertyValue[display_value=#{display_value},db_identifier=#{db_identifier},url_identifier=#{url_identifier}]&quot;</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000065" class="method-detail">
+        <a name="M000065"></a>
+
+        <div class="method-heading">
+          <a href="#M000065" class="method-signature">
+          <span class="method-name">url_identifier</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<b>returns</b>: A representation of this value that is unique and
+representable in a URL Use the result of this method if in any links that
+you want to build to point back into <a href="../Mingle.html">Mingle</a>
+For the various property types, the following are the values you can expect
+to see
+</p>
+<ul>
+<li>Managed/Unmanaged text : The string value of the value
+
+</li>
+<li>Managed/Unmanaged numeric : The numeric string representation of the value
+
+</li>
+<li>Date : The list of values this property has on all cards on the project,
+formatted using the project date format
+
+</li>
+<li><a href="User.html">User</a> : The login of the user
+
+</li>
+<li>Formula : Either the date or the numeric value, formatted as above
+
+</li>
+<li>Card : The number of the card, followed by the name of the card
+
+</li>
+</ul>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000065-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000065-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/macro_development_toolkit/mingle/property_value.rb, line 45</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">url_identifier</span>
+      <span class="ruby-ivar">@property_value</span>.<span class="ruby-identifier">url_identifier</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

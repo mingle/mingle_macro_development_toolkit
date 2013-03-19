@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Mingle::Project</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Mingle::Project</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/macro_development_toolkit/mingle/project_rb.html">
+                lib/macro_development_toolkit/mingle/project.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+    <div id="diagram">
+      <map id="map" name="map">
+  <area shape="rect" coords="736,51,917,99"      href="CardTypePropertyDefinition.html" alt="CardTypePropertyDefinition" />
+  <area shape="rect" coords="584,51,712,99"      href="PropertyDefinition.html" alt="PropertyDefinition" />
+  <area shape="rect" coords="451,51,560,99"      href="ProjectVariable.html" alt="ProjectVariable" />
+  <area shape="rect" coords="347,51,427,99"      href="CardType.html" alt="CardType" />
+  <area shape="rect" coords="251,51,323,99"      href="User.html" alt="User" />
+  <area shape="rect" coords="155,51,227,99"      href="Project.html" alt="Project" />
+  <area shape="rect" coords="27,51,131,99"      href="PropertyValue.html" alt="PropertyValue" />
+  <area shape="rect" coords="16,16,952,109"      href="../Mingle.html" alt="Mingle" />
+</map>
+<img src="../../dot/f_0.png" usemap="#map" border="0" alt="dot/f_0.png">
+    </div>
+
+    <div id="description">
+      <p>
+This is a lightweight representation of a project. From an instance of this
+class you can the <a href="Project.html#M000053">name</a> &amp; <a
+href="Project.html#M000052">identifier</a> of the project. You can also get
+a list of property definitions and card types on the project, in addition
+to information about the <a href="Project.html#M000059">team</a> and
+project variables. This class also provides an interface to the MQL
+execution facilities provided by <a href="../Mingle.html">Mingle</a>.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000058">can_be_cached?</a>&nbsp;&nbsp;
+      <a href="#M000054">card_types</a>&nbsp;&nbsp;
+      <a href="#M000057">execute_mql</a>&nbsp;&nbsp;
+      <a href="#M000061">format_date_with_project_date_format</a>&nbsp;&nbsp;
+      <a href="#M000060">format_number_with_project_precision</a>&nbsp;&nbsp;
+      <a href="#M000052">identifier</a>&nbsp;&nbsp;
+      <a href="#M000053">name</a>&nbsp;&nbsp;
+      <a href="#M000051">new</a>&nbsp;&nbsp;
+      <a href="#M000055">property_definitions</a>&nbsp;&nbsp;
+      <a href="#M000059">team</a>&nbsp;&nbsp;
+      <a href="#M000056">value_of_project_variable</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">VERSION_ONE</td>
+          <td>=</td>
+          <td class="context-item-value">'v1'</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">VERSION_TWO</td>
+          <td>=</td>
+          <td class="context-item-value">'v2'</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">card_types_loader</td>
+          <td class="context-item-value">&nbsp;[W]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">project_variables_loader</td>
+          <td class="context-item-value">&nbsp;[W]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">property_definitions_loader</td>
+          <td class="context-item-value">&nbsp;[W]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">team_loader</td>
+          <td class="context-item-value">&nbsp;[W]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000051" class="method-detail">
+        <a name="M000051"></a>
+
+        <div class="method-heading">
+          <a href="#M000051" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">(project, card_query_options)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000051-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000051-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/macro_development_toolkit/mingle/project.rb, line 14</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">project</span>, <span class="ruby-identifier">card_query_options</span>)
+      <span class="ruby-ivar">@full_project</span> = <span class="ruby-identifier">project</span>
+      <span class="ruby-ivar">@card_query_options</span> = <span class="ruby-identifier">card_query_options</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000058" class="method-detail">
+        <a name="M000058"></a>
+
+        <div class="method-heading">
+          <a href="#M000058" class="method-signature">
+          <span class="method-name">can_be_cached?</span><span class="method-args">(mql)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The macros on a page determine whether the page content is cached. Macros
+that use certain MQL concepts (for example TODAY, CURRENT USER, or
+cross-project functionality) should report that they cannot be cached so
+that the page they are on is not cached. This method indicates whether a
+MQL query uses those concepts, and can be used by a macro to determine
+whether or not to report that it should be cached.
+</p>
+<p>
+<b>accepts</b>: A valid MQL string. To see what constitutes valid MQL, look
+<a
+href="http://studios.thoughtworks.com/mingle-agile-project-management/3.0/help/index.html">here</a>
+</p>
+<p>
+<b>returns</b>: A boolean indicating whether the data pertaining to the MQL
+can be cached
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000058-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000058-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/macro_development_toolkit/mingle/project.rb, line 135</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">can_be_cached?</span>(<span class="ruby-identifier">mql</span>)
+      <span class="ruby-ivar">@full_project</span>.<span class="ruby-identifier">with_active_project</span> <span class="ruby-keyword kw">do</span>
+        <span class="ruby-constant">CardQuery</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">mql</span>, <span class="ruby-ivar">@card_query_options</span>).<span class="ruby-identifier">can_be_cached?</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000054" class="method-detail">
+        <a name="M000054"></a>
+
+        <div class="method-heading">
+          <a href="#M000054" class="method-signature">
+          <span class="method-name">card_types</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<b>returns</b>: A list CardTypes as configured for this project. There will
+always be at least one element in this list.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000054-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000054-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/macro_development_toolkit/mingle/project.rb, line 31</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">card_types</span>
+      <span class="ruby-ivar">@card_types_loader</span>.<span class="ruby-identifier">load</span>.<span class="ruby-identifier">collect</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:card_type</span>)
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000057" class="method-detail">
+        <a name="M000057"></a>
+
+        <div class="method-heading">
+          <a href="#M000057" class="method-signature">
+          <span class="method-name">execute_mql</span><span class="method-args">(mql, version = VERSION_TWO)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<b>accepts</b>: A valid MQL string. To see what constitutes valid MQL, look
+<a
+href="http://studios.thoughtworks.com/mingle-agile-project-management/3.0/help/index.html">here</a>
+</p>
+<p>
+<b>returns</b>: An Array of Hashes, in which each Hash represents one row
+of results from the MQL execution The keys in the Hash are the names of the
+properties selected, with all the alphanumeric characters downcased and all
+the spaces and special characters replaced with underscores(_).
+</p>
+<p>
+Executing a mql statement with explictly supplied property names will
+return results as follows mql = select number,&quot;defect status&quot;
+where type=defect
+</p>
+<p>
+[
+</p>
+<pre>
+  {&quot;number&quot;=&gt;&quot;106&quot;, &quot;defect_status&quot;=&gt;&quot;Fixed&quot;},
+  {&quot;number&quot;=&gt;&quot;70&quot;, &quot;defect_status&quot;=&gt;&quot;Fixed&quot;},
+  {&quot;number&quot;=&gt;&quot;69&quot;, &quot;defect_status&quot;=&gt;&quot;New&quot;},
+  {&quot;number&quot;=&gt;&quot;68&quot;, &quot;defect_status&quot;=&gt;&quot;In Progress&quot;},
+  ...
+  ...
+</pre>
+<p>
+]
+</p>
+<p>
+If aggregate functions are selected, the values look as below mql = select
+&quot;defect status&quot;, count(*) where type=defect group by &quot;defect
+status&quot;
+</p>
+<p>
+[
+</p>
+<pre>
+  {&quot;count&quot;=&gt;&quot;14&quot;, &quot;defect_status&quot;=&gt;&quot;New&quot;},
+  {&quot;count&quot;=&gt;&quot;3&quot;, &quot;defect_status&quot;=&gt;&quot;Open&quot;},
+  {&quot;count&quot;=&gt;&quot;1&quot;, &quot;defect_status&quot;=&gt;&quot;In Progress&quot;},
+  {&quot;count&quot;=&gt;&quot;2&quot;, &quot;defect_status&quot;=&gt;&quot;Fixed&quot;},
+  {&quot;count&quot;=&gt;&quot;1&quot;, &quot;defect_status&quot;=&gt;&quot;Closed&quot;}
+</pre>
+<p>
+]
+</p>
+<p>
+If no columns are explicitly provided, the results contain the raw column
+names specific properties. It is not possible to interpret these results in
+the general case with the current version of the macro development toolkit,
+so this is not a particularly useful form of MQL to execute. The
+documentation here is provided here just for completeness and should not be
+used as a recommended way of using this call. The structure of this
+response is subject to change in future versions of the toolkit.
+</p>
+<p>
+mql = type=defect
+</p>
+<p>
+{
+</p>
+<pre>
+  &quot;cp_testing_status&quot;=&gt;&quot;Ready to Be Tested&quot;,
+  &quot;cp_actual_effort&quot;=&gt;nil,
+  &quot;created_at&quot;=&gt;&quot;2009-09-09 21:45:34&quot;,
+  &quot;cp_story_count&quot;=&gt;nil,
+  &quot;caching_stamp&quot;=&gt;&quot;2&quot;,
+  &quot;cp_release_card_id&quot;=&gt;&quot;2&quot;,
+  &quot;cp_risk_liklihood&quot;=&gt;nil,
+  &quot;cp_build_completed&quot;=&gt;&quot;452&quot;,
+  &quot;cp_closed&quot;=&gt;nil,
+  &quot;has_macros&quot;=&gt;&quot;f&quot;,
+  &quot;description&quot;=&gt;&quot;&quot;,
+  &quot;cp_release_start_date&quot;=&gt;nil,
+  &quot;cp_risk_status&quot;=&gt;nil,
+  &quot;cp_story_time_to_life&quot;=&gt;nil,
+  &quot;cp_total_open_iterations&quot;=&gt;nil,
+  &quot;cp_defect_time_to_life&quot;=&gt;&quot;50.00&quot;,
+  &quot;cp_development_started_on&quot;=&gt;nil,
+  &quot;card_type_name&quot;=&gt;&quot;Defect&quot;,
+  &quot;cp_added_to_scope_on&quot;=&gt;nil,
+  &quot;cp_owner_user_id&quot;=&gt;nil,
+  &quot;cp_added_to_scope_card_id&quot;=&gt;nil,
+  &quot;cp_type_of_test&quot;=&gt;nil,
+  &quot;cp_velocity&quot;=&gt;nil,
+  &quot;cp_feature_card_id&quot;=&gt;&quot;60&quot;
+</pre>
+<p>
+}
+</p>
+<p>
+Note: In versions of the toolkit beyond 1.3, the keys for the aggregate
+function (such as COUNT, SUM etc.) have been normalized to follow the same
+conventions as a property <a href="Project.html#M000053">name</a>, i.e.
+lowecase and stripped of all spaces. If you wish to get the results in the
+old form, set the optional second parameter of this call to be
+Project::VERSION_ONE, while you transition your macros to use the <a
+href="Project.html#M000051">new</a> form. The old version of response will
+be deprecated in a future version of <a href="../Mingle.html">Mingle</a>
+and the toolkit.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000057-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000057-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/macro_development_toolkit/mingle/project.rb, line 119</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">execute_mql</span>(<span class="ruby-identifier">mql</span>, <span class="ruby-identifier">version</span> = <span class="ruby-constant">VERSION_TWO</span>)
+      <span class="ruby-ivar">@full_project</span>.<span class="ruby-identifier">with_active_project</span> <span class="ruby-keyword kw">do</span>
+        <span class="ruby-constant">CardQuery</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">mql</span>, <span class="ruby-ivar">@card_query_options</span>).<span class="ruby-identifier">values_for_macro</span>(<span class="ruby-identifier">:api_version</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">version</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000061" class="method-detail">
+        <a name="M000061"></a>
+
+        <div class="method-heading">
+          <a href="#M000061" class="method-signature">
+          <span class="method-name">format_date_with_project_date_format</span><span class="method-args">(date)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<b>accepts</b>: Any Number
+</p>
+<p>
+<b>returns</b>: The argument date formatted using the date format
+configured for the project
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000061-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000061-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/macro_development_toolkit/mingle/project.rb, line 156</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">format_date_with_project_date_format</span>(<span class="ruby-identifier">date</span>)
+      <span class="ruby-ivar">@full_project</span>.<span class="ruby-identifier">format_date</span>(<span class="ruby-identifier">date</span>)
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000060" class="method-detail">
+        <a name="M000060"></a>
+
+        <div class="method-heading">
+          <a href="#M000060" class="method-signature">
+          <span class="method-name">format_number_with_project_precision</span><span class="method-args">(number)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<b>accepts</b>: Any Number
+</p>
+<p>
+<b>returns</b>: The argument number formatted to the precision configured
+for the project (default 2)
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000060-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000060-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/macro_development_toolkit/mingle/project.rb, line 149</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">format_number_with_project_precision</span>(<span class="ruby-identifier">number</span>)
+      <span class="ruby-ivar">@full_project</span>.<span class="ruby-identifier">to_num</span>(<span class="ruby-identifier">number</span>)
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000052" class="method-detail">
+        <a name="M000052"></a>
+
+        <div class="method-heading">
+          <a href="#M000052" class="method-signature">
+          <span class="method-name">identifier</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<b>returns</b>: The <a href="Project.html#M000052">identifier</a> of this
+project
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000052-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000052-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/macro_development_toolkit/mingle/project.rb, line 20</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">identifier</span>
+      <span class="ruby-ivar">@full_project</span>.<span class="ruby-identifier">identifier</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000053" class="method-detail">
+        <a name="M000053"></a>
+
+        <div class="method-heading">
+          <a href="#M000053" class="method-signature">
+          <span class="method-name">name</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<b>returns</b>: The <a href="Project.html#M000053">name</a> of this project
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000053-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000053-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/macro_development_toolkit/mingle/project.rb, line 25</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">name</span>
+      <span class="ruby-ivar">@full_project</span>.<span class="ruby-identifier">name</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000055" class="method-detail">
+        <a name="M000055"></a>
+
+        <div class="method-heading">
+          <a href="#M000055" class="method-signature">
+          <span class="method-name">property_definitions</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<b>returns</b>: An list of PropertyDefinitions as configured for this
+project, which may be empty
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000055-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000055-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/macro_development_toolkit/mingle/project.rb, line 36</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">property_definitions</span>
+      <span class="ruby-ivar">@property_definitions_loader</span>.<span class="ruby-identifier">load</span>.<span class="ruby-identifier">collect</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:property_definition</span>)
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000059" class="method-detail">
+        <a name="M000059"></a>
+
+        <div class="method-heading">
+          <a href="#M000059" class="method-signature">
+          <span class="method-name">team</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<b>returns</b>: The full list of Users who are members of this project
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000059-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000059-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/macro_development_toolkit/mingle/project.rb, line 142</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">team</span>
+      <span class="ruby-ivar">@team_loader</span>.<span class="ruby-identifier">load</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000056" class="method-detail">
+        <a name="M000056"></a>
+
+        <div class="method-heading">
+          <a href="#M000056" class="method-signature">
+          <span class="method-name">value_of_project_variable</span><span class="method-args">(project_variable_name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<b>accepts</b>: The <a href="Project.html#M000053">name</a> of a project
+variable configured for this project
+</p>
+<p>
+<b>returns</b>: The display value of the <a
+href="PropertyValue.html">PropertyValue</a>(s) that project_variable_name
+represents
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000056-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000056-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/macro_development_toolkit/mingle/project.rb, line 43</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">value_of_project_variable</span>(<span class="ruby-identifier">project_variable_name</span>)
+      <span class="ruby-ivar">@project_variables_loader</span>.<span class="ruby-identifier">load</span>.<span class="ruby-identifier">detect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">pv</span><span class="ruby-operator">|</span> <span class="ruby-identifier">pv</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">project_variable_name</span> }.<span class="ruby-identifier">value</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>
