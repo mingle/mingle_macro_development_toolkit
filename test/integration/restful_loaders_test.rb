@@ -1,4 +1,4 @@
-#Copyright 2012 ThoughtWorks, Inc.  All rights reserved.
+#Copyright 2007 - 2013 ThoughtWorks, Inc.  All rights reserved.
 
 require File.join(File.dirname(__FILE__), 'integration_test_helper')
 

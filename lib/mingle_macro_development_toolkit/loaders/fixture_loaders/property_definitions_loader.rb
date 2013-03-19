@@ -1,4 +1,4 @@
-#Copyright 2012 ThoughtWorks, Inc.  All rights reserved.
+#Copyright 2007 - 2013 ThoughtWorks, Inc.  All rights reserved.
 module FixtureLoaders
   class PropertyDefinitionsLoader < Base
     def load
