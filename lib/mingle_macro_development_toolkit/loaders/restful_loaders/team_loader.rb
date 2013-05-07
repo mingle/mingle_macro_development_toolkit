@@ -8,7 +8,7 @@ module RESTfulLoaders
     end
 
     def load
-      (extract('users', @project) || []).collect{ |user| Mingle::User(OpenStruct.new(user))}
+      (extract('users', @project) || []).collect{ |user| Mingle::User.new(OpenStruct.new(user))}
     end
   end
 end

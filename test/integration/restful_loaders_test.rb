@@ -5,7 +5,6 @@ require File.join(File.dirname(__FILE__), 'integration_test_helper')
 class RestLoaderTest < Test::Unit::TestCase
   
   TEST_PROJECT = 'http://admin:p@localhost:8080/api/v2/lightweight_projects/macro_toolkit_test.xml'
-  TEST_PROJECT_V1 = "http://admin:p@localhost:8080/api/v1/lightweight_projects/macro_toolkit_test.xml"
   
   def test_should_load_direct_project_attributes_from_correct_fixture
     assert_not_nil project(TEST_PROJECT)
@@ -56,33 +55,14 @@ class RestLoaderTest < Test::Unit::TestCase
     assert_equal 97, mql_results.first['sum_story_points'].to_i
   end  
 
-  def test_should_execute_mql_to_return_an_array_of_hash_results_for_each_result_row_for_v1
-    mql_results = project(TEST_PROJECT_V1).execute_mql("SELECT SUM('story points') WHERE 'Release' = (Current Release) AND 'Date Created' IS NOT NULL")
-    assert_equal 1, mql_results.size
-    assert_equal Hash, mql_results.first.class
-    assert_equal 97, mql_results.first['Sum_Story_Points'].to_i
-  end  
-
   def test_should_execute_number_format_remotely_for_v2
     proj = project(TEST_PROJECT)
     assert_equal "3.67", proj.format_number_with_project_precision("3.6711").to_s
     assert_equal "20.14", proj.format_number_with_project_precision("20.1398").to_s
   end  
 
-  def test_should_execute_number_format_remotely_for_v1
-    proj = project(TEST_PROJECT_V1)
-    assert_equal "3.67", proj.format_number_with_project_precision("3.6711").to_s
-    assert_equal "20.14", proj.format_number_with_project_precision("20.1398").to_s
-  end  
-
   def test_should_execute_date_format_remotely_for_v2
     proj = project(TEST_PROJECT)
-    assert_equal "22 May 2005", proj.format_date_with_project_date_format(Date.new(2005, 5, 22))
-    assert_equal "06 Oct 2008", proj.format_date_with_project_date_format(Date.new(2008, 10, 6))
-  end  
-
-  def test_should_execute_date_format_remotely_for_v1
-    proj = project(TEST_PROJECT_V1)
     assert_equal "22 May 2005", proj.format_date_with_project_date_format(Date.new(2005, 5, 22))
     assert_equal "06 Oct 2008", proj.format_date_with_project_date_format(Date.new(2008, 10, 6))
   end  
